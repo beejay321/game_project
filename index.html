@@ -4,9 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Click Speed</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
+    <div>
+      <h1>Click Speed Game</h1>
+    </div>
+    <div id="game-intro">
+      <br /><br />
+      <button id="startBtn">Start Game</button>
+    </div>
+
+    <!-- Screen of the actual game -->
+    <div id="game-container">
+      <div>
+        <p>Time Left: <span id="timer">0</span>s</p>
+        <p>Score: <span class="score">0</span></p>
+        <p>Lives: <span id="lives">3</span></p>
+      </div>
+      <!-- #game-screen is initially hidden using CSS style display: none -->
+      <div id="game-screen"></div>
+    </div>
+
+    <!-- Screen once game is over  -->
+    <div id="game-end">
+      <p>Game over</p>
+      <p>Score: <span class="score"></span></p>
+
+      <button id="restartBtn">Restart Game</button>
+    </div>
     <script src="./js/index.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>
