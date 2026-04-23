@@ -2,7 +2,7 @@ class Game {
   constructor() {
     this.score = 0;
     this.lives = 3;
-    this.time = 60;
+    this.time = 30;
     this.speed = 2;
     this.gameRunning = false;
     this.gameIsOver = false;
@@ -14,8 +14,8 @@ class Game {
     this.scoreboard = document.querySelector("#score");
     this.livesContainer = document.querySelector("#lives");
     this.timerEl = document.querySelector("#timer");
-    this.height = 350;
-    this.width = 500;
+    this.height = 450;
+    this.width = 600;
   }
   start() {
     console.log("game screen showed");
@@ -24,7 +24,7 @@ class Game {
     this.gameScreen.style.width = this.width + "px";
     this.gameScreen.style.margin = "auto";
     this.startScreen.style.display = "none";
-    this.gameScreen.style.display = "block";
+    this.gameContainer.style.display = "block";
 
     // this updates the timer, scoreboard and lives as shown
     this.updateUI();
@@ -60,19 +60,14 @@ class Game {
   loseLife() {
     this.lives--;
     this.updateUI();
-
-    if (this.lives <= 0) {
-      this.end();
-    }
   }
   end() {
     clearInterval(this.gameInterval);
     clearInterval(this.timerInterval);
     this.gameRunning = false;
-
-    alert("Game Over! Score: " + this.score);
+    // alert("Game Over! Score: " + this.score);
     // this.saveHighScore();
-    this.gameScreen.style.display = "none";
+    this.gameContainer.style.display = "none";
     this.endScreen.style.display = "block";
     this.restartButton.style.display = "block";
     this.scoreboard.textContent = this.score;
@@ -131,6 +126,19 @@ class Ball {
 
     if (this.type === "bad") {
       this.game.loseLife();
+    }
+    if (this.type === "bad" && this.game.lives === 0) {
+      const explosion = document.createElement("img");
+      explosion.src = "https://media.tenor.com/2FL76f6q7u8AAAAj/explosion.gif";
+      explosion.style.width = "450px";
+      explosion.style.height = "450px";
+      explosion.style.top = this.ball.top / 2 + "px";
+      explosion.style.left = this.ball.top / 2 + "px";
+      this.game.gameScreen.appendChild(explosion);
+      this.game.gameIsOver = true;
+      setTimeout(() => {
+        this.game.end();
+      }, 1000);
     }
 
     if (this.type === "star") {

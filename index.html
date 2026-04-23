@@ -8,12 +8,16 @@
   </head>
   <body>
     <div>
-      <h1>Ball Blitz</h1>
+      <img height="135" src="./images/logo.png" alt="start-btn" srcset="" />
     </div>
     <div id="game-intro">
-      <br /><br />
-      <button id="startBtn">Start Game</button>
-      <br /><br />
+      <img
+        height="180"
+        id="startBtn"
+        src="./images/start-btn.png"
+        alt="start-btn"
+        srcset=""
+      />
       <div>
         <h3>Click to score. Avoid danger. Catch stars.</h3>
         <p>Stay alive for 60 seconds to win!</p>
@@ -22,18 +26,21 @@
     </div>
     <div id="game-over" class="game-end">
       <br />
-      <h3>Game over</h3>
+      <img src="./images/game-over.png" alt="game-over" />
     </div>
     <!-- Screen of the actual game -->
-    <div id="game-container">
+    <div id="stats">
       <br />
       <div>
-        <p>Time Left: <span id="timer">0</span>s</p>
+        <!-- <h3>Stats</h3> -->
         <p>Score: <span id="score">0</span></p>
         <p>Lives: <span id="lives">3</span></p>
       </div>
       <!-- #game-screen is initially hidden using CSS style display: none -->
-      <div id="game-screen"></div>
+      <div id="game-container">
+        <p>Time Left: <span id="timer">0</span>s</p>
+        <div id="game-screen"></div>
+      </div>
     </div>
 
     <!-- Screen once game is over  -->
