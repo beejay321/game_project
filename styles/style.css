@@ -14,7 +14,7 @@ button {
   cursor: pointer;
 }
 #game-screen {
-  /* display: none; */
+  display: none;
   align-content: center;
   padding: 20px 0px;
   overflow: hidden;
