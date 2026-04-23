@@ -14,7 +14,7 @@ button {
   cursor: pointer;
 }
 #game-screen {
-  display: none;
+  /* display: none; */
   align-content: center;
   padding: 20px 0px;
   overflow: hidden;
@@ -23,14 +23,30 @@ button {
   background-size: cover;
   animation: slide 5s linear infinite;
 }
+#game-over {
+  display: none;
+}
+#game-restart {
+  display: none;
+}
 
 .ball {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   position: absolute;
   cursor: pointer;
 }
+
 .good {
-  background-color: green;
+  content: url(../images/green-ball-png.webp);
+}
+.bad {
+  content: url(../images/danger-ball.avif);
+  background-color: red;
+}
+
+.star {
+  content: url(../images/star.jpg);
+  background-color: gold;
 }

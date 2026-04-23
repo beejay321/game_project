@@ -13,17 +13,23 @@
     <div id="game-intro">
       <br /><br />
       <button id="startBtn">Start Game</button>
-      <h3>Click to score. Avoid danger. Catch stars.</h3>
-
-      <p>Stay alive for 60 seconds to win!</p>
-      <p>You have 3 lives — make them count!</p>
+      <br /><br />
+      <div>
+        <h3>Click to score. Avoid danger. Catch stars.</h3>
+        <p>Stay alive for 60 seconds to win!</p>
+        <p>You have 3 lives — make them count!</p>
+      </div>
     </div>
-
+    <div id="game-over" class="game-end">
+      <br />
+      <h3>Game over</h3>
+    </div>
     <!-- Screen of the actual game -->
     <div id="game-container">
+      <br />
       <div>
         <p>Time Left: <span id="timer">0</span>s</p>
-        <p>Score: <span class="score">0</span></p>
+        <p>Score: <span id="score">0</span></p>
         <p>Lives: <span id="lives">3</span></p>
       </div>
       <!-- #game-screen is initially hidden using CSS style display: none -->
@@ -31,10 +37,8 @@
     </div>
 
     <!-- Screen once game is over  -->
-    <div id="game-end">
-      <p>Game over</p>
-      <p>Score: <span class="score"></span></p>
-
+    <div id="game-restart" class="game-end">
+      <br />
       <button id="restartBtn">Restart Game</button>
     </div>
     <script src="./js/index.js"></script>

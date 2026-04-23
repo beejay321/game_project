@@ -8,9 +8,10 @@ class Game {
     this.gameIsOver = false;
     this.startScreen = document.querySelector("#game-intro");
     this.gameScreen = document.querySelector("#game-screen");
-    this.endScreen = document.querySelector("#game-end");
+    this.endScreen = document.querySelector("#game-over");
+    this.restartButton = document.getElementById("game-restart");
     this.gameContainer = document.querySelector("#game-container");
-    this.scoreboard = document.querySelector(".score");
+    this.scoreboard = document.querySelector("#score");
     this.livesContainer = document.querySelector("#lives");
     this.timerEl = document.querySelector("#timer");
     this.height = 350;
@@ -56,6 +57,26 @@ class Game {
     this.score += points;
     this.updateUI();
   }
+  loseLife() {
+    this.lives--;
+    this.updateUI();
+
+    if (this.lives <= 0) {
+      this.end();
+    }
+  }
+  end() {
+    clearInterval(this.gameInterval);
+    clearInterval(this.timerInterval);
+    this.gameRunning = false;
+
+    alert("Game Over! Score: " + this.score);
+    // this.saveHighScore();
+    this.gameScreen.style.display = "none";
+    this.endScreen.style.display = "block";
+    this.restartButton.style.display = "block";
+    this.scoreboard.textContent = this.score;
+  }
 }
 class Ball {
   constructor(game) {
@@ -63,12 +84,18 @@ class Ball {
     this.ball = document.createElement("div");
     this.ball.classList.add("ball");
 
-    this.type = "good";
+    this.type = this.getRandomType();
     this.ball.classList.add(this.type);
 
     this.left = Math.random() * 360;
     this.top = 0;
     this.speed = this.game.speed;
+  }
+  getRandomType() {
+    const random = Math.random();
+    if (random < 0.7) return "good";
+    if (random < 0.9) return "bad";
+    return "star";
   }
   generate() {
     this.ball.style.left = this.left + "px";
@@ -98,7 +125,17 @@ class Ball {
   handleClick() {
     clearInterval(this.interval);
 
-    this.game.addScore(1);
+    if (this.type === "good") {
+      this.game.addScore(1);
+    }
+
+    if (this.type === "bad") {
+      this.game.loseLife();
+    }
+
+    if (this.type === "star") {
+      this.game.addScore(5);
+    }
 
     this.ball.remove();
   }
