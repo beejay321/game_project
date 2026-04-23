@@ -25,14 +25,36 @@ class Game {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
 
+    // this updates the timer, scoreboard and lives as shown
+    this.updateUI();
+
     // makes the balls start falling
     this.gameInterval = setInterval(() => {
       this.createBall();
+    }, 1000);
+
+    //timer starts to countdown
+    this.timerInterval = setInterval(() => {
+      this.time--;
+      this.timerEl.textContent = this.time;
+
+      if (this.time <= 0) {
+        this.end();
+      }
     }, 1000);
   }
   createBall() {
     const ball = new Ball(this);
     ball.generate();
+  }
+  updateUI() {
+    this.scoreboard.textContent = this.score;
+    this.livesContainer.textContent = this.lives;
+    this.timerEl.textContent = this.time;
+  }
+  addScore(points) {
+    this.score += points;
+    this.updateUI();
   }
 }
 class Ball {
@@ -53,6 +75,7 @@ class Ball {
     this.ball.style.top = this.top + "px";
 
     this.game.gameScreen.appendChild(this.ball);
+    this.ball.addEventListener("click", () => this.handleClick());
 
     this.fall();
   }
@@ -71,5 +94,12 @@ class Ball {
         }
       }
     }, 20);
+  }
+  handleClick() {
+    clearInterval(this.interval);
+
+    this.game.addScore(1);
+
+    this.ball.remove();
   }
 }
