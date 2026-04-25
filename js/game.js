@@ -1,6 +1,7 @@
 class Game {
   constructor() {
     this.score = 0;
+    this.highScore = localStorage.getItem("highScore") || 0;
     this.lives = 3;
     this.time = 30;
     this.speed = 2;
@@ -12,19 +13,21 @@ class Game {
     this.restartButton = document.getElementById("game-restart");
     this.gameContainer = document.querySelector("#game-container");
     this.scoreboard = document.querySelector("#score");
+    this.highScoreBoard = document.querySelector("#high-score");
+    this.highScoreEl = document.querySelector("#high-score-element");
     this.livesContainer = document.querySelector("#lives");
     this.timerEl = document.querySelector("#timer");
     this.height = 450;
     this.width = 600;
   }
   start() {
-    console.log("game screen showed");
     //hides the start screen and reveals the game screen
     this.gameScreen.style.height = this.height + "px";
     this.gameScreen.style.width = this.width + "px";
     this.gameScreen.style.margin = "auto";
     this.startScreen.style.display = "none";
     this.gameContainer.style.display = "block";
+    this.highScoreEl.style.display = "block";
 
     // this updates the timer, scoreboard and lives as shown
     this.updateUI();
@@ -52,6 +55,7 @@ class Game {
     this.scoreboard.textContent = this.score;
     this.livesContainer.textContent = this.lives;
     this.timerEl.textContent = this.time;
+    this.highScoreBoard.textContent = this.highScore;
   }
   addScore(points) {
     this.score += points;
@@ -65,12 +69,20 @@ class Game {
     clearInterval(this.gameInterval);
     clearInterval(this.timerInterval);
     this.gameRunning = false;
-    // alert("Game Over! Score: " + this.score);
-    // this.saveHighScore();
+    this.saveHighScore();
     this.gameContainer.style.display = "none";
     this.endScreen.style.display = "block";
     this.restartButton.style.display = "block";
     this.scoreboard.textContent = this.score;
+  }
+  saveHighScore() {
+    this.highScore = localStorage.getItem("highScore") || 0;
+
+    if (this.score > this.highScore) {
+      localStorage.setItem("highScore", this.score);
+      alert("New High Score!");
+    }
+    // this.highScoreBoard.textContent = this.highScore;
   }
 }
 class Ball {

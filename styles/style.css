@@ -36,6 +36,9 @@ button {
 #game-restart {
   display: none;
 }
+#high-score-element {
+  display: none;
+}
 
 .ball {
   width: 65px;

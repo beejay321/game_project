@@ -19,8 +19,8 @@
         srcset=""
       />
       <div>
-        <h3>Click to score. Avoid danger. Catch stars.</h3>
-        <p>Stay alive for 60 seconds to win!</p>
+        <h3>Smash the good. Avoid danger. Catch stars.</h3>
+        <p>Survive as long as you can!</p>
         <p>You have 3 lives — make them count!</p>
       </div>
     </div>
@@ -33,8 +33,11 @@
       <br />
       <div>
         <!-- <h3>Stats</h3> -->
-        <p>Score: <span id="score">0</span></p>
-        <p>Lives: <span id="lives">3</span></p>
+        <p>Current Score: <span id="score">0</span></p>
+        <p>Lives Remaining: <span id="lives">3</span></p>
+        <p id="high-score-element">
+          High Score: <span id="high-score">0</span>
+        </p>
       </div>
       <!-- #game-screen is initially hidden using CSS style display: none -->
       <div id="game-container">
@@ -46,6 +49,7 @@
     <!-- Screen once game is over  -->
     <div id="game-restart" class="game-end">
       <br />
+
       <button id="restartBtn">Restart Game</button>
     </div>
     <script src="./js/index.js"></script>
