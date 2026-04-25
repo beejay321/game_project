@@ -19,6 +19,9 @@ class Game {
     this.timerEl = document.querySelector("#timer");
     this.height = 450;
     this.width = 600;
+    this.popSound = new Audio("./sounds/pop2.wav");
+    this.badSound = new Audio("./sounds/bad.wav");
+    this.starSound = new Audio("./sounds/star.wav");
   }
   start() {
     //hides the start screen and reveals the game screen
@@ -133,10 +136,14 @@ class Ball {
     clearInterval(this.interval);
 
     if (this.type === "good") {
+      this.game.popSound.currentTime = 0;
+      this.game.popSound.play();
       this.game.addScore(1);
     }
 
     if (this.type === "bad") {
+      this.game.badSound.currentTime = 0;
+      this.game.badSound.play();
       this.game.loseLife();
     }
     if (this.type === "bad" && this.game.lives === 0) {
@@ -154,6 +161,8 @@ class Ball {
     }
 
     if (this.type === "star") {
+      this.game.starSound.currentTime = 0;
+      this.game.starSound.play();
       this.game.addScore(5);
     }
 
