@@ -82,7 +82,7 @@ class Game {
       localStorage.setItem("highScore", this.score);
       alert("New High Score!");
     }
-    // this.highScoreBoard.textContent = this.highScore;
+    this.highScoreBoard.textContent = this.highScore;
   }
 }
 class Ball {
